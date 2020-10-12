@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> snapshots should match snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#102A43",
+          "fontSize": 24,
+        },
+      ]
+    }
+  >
+    Hello Button
+  </Text>
+</View>
+`;

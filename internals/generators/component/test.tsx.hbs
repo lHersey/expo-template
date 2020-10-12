@@ -1,0 +1,38 @@
+import { render } from '@testing-library/react-native';
+import React, { ComponentProps, FC } from 'react';
+import Providers from 'shared/providers';
+
+import Base{{ properCase name }} from '../index';
+
+const {{ properCase name }}: FC<ComponentProps<typeof Base{{ properCase name }}>> = props => {
+  return (
+    <Providers>
+      <Base{{ properCase name }} {...props} />
+    </Providers>
+  );
+};
+
+describe('<{{ properCase name }} />', () => {
+  describe('snapshots', () => {
+    it('should match snapshot', () => {
+      expect.hasAssertions();
+      const rendered = render(<{{properCase name}} />).toJSON();
+
+      expect(rendered).toMatchSnapshot();
+    });
+  });
+
+  describe('unit', () => {
+    it('should render the text', () => {
+      expect.hasAssertions();
+      const { queryByText } = render(<{{properCase name}} />);
+
+      expect(queryByText('Hello {{ properCase name }}')).toBeTruthy();
+    });
+  });
+
+  it('should have unit tests specified', () => {
+    expect.hasAssertions();
+    expect(true).toStrictEqual(false);
+  });
+});
