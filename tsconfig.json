@@ -8,6 +8,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
+    "noImplicitAny": true,
     "baseUrl": "./src"
-  }
+  },
+  "extends": "expo/tsconfig.base"
 }
