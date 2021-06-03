@@ -45,7 +45,7 @@
     "expo-module-scripts": "^2.0.0",
     "husky": "^6.0.0",
     "inquirer-directory": "^2.2.0",
-    "jest": "^27.0.2",
+    "jest": "^27.0.4",
     "jest-expo": "^41.0.0",
     "lint-staged": "^11.0.0",
     "plop": "^2.7.4",
