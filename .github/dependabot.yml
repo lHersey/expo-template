@@ -6,3 +6,12 @@ updates:
     interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
+  ignore:
+    - depencency-name: '@react-native-community/masked-view',
+    - depencency-name: '@types/react-native',
+    - depencency-name: '@types/react',
+    - depencency-name: 'react-native-reanimated',
+    - depencency-name: 'react-native-screens',
+    - depencency-name: 'typescript',
+    - dependency-name: 'react'
+    
