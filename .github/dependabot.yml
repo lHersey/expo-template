@@ -1,8 +1,16 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "11:00"
-  open-pull-requests-limit: 10
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+      time: '11:00'
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: '@react-native-community/masked-view'
+      - dependency-name: '@types/react-native'
+      - dependency-name: '@types/react'
+      - dependency-name: 'react-native-reanimated'
+      - dependency-name: 'react-native-screens'
+      - dependency-name: 'typescript'
+      - dependency-name: 'react'
