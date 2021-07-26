@@ -20,6 +20,8 @@ exports[`<Home /> snapshots should match snapshot 1`] = `
       Array [
         Object {
           "color": "#102A43",
+        },
+        Object {
           "fontSize": 24,
         },
       ]

@@ -1,3 +1,4 @@
+import Text from 'shared/components/text';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -7,7 +8,6 @@ export const Container = styled.View`
   align-items: center;
 `;
 
-export const Title = styled.Text`
-  color: ${p => p.theme.TEXT_COLOR};
+export const Title = styled(Text)`
   font-size: 24px;
 `;

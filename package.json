@@ -6,6 +6,7 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "test": "jest --silent",
+    "test:ci": "jest --ci",
     "generate": "plop --plopfile internals/generators/index.js",
     "prepare": "husky install"
   },
