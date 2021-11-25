@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { ThemeProvider } from 'styled-components/native';
 
 import { THEME } from '../../styles/theme';

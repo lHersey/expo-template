@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Navigator from 'shared/navigator';
 import Providers from 'shared/providers';
 
