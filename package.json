@@ -43,7 +43,7 @@
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jest": "^25.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react-hooks": "^4.2.1-beta-ca106a02d-20211125",
+    "eslint-plugin-react-hooks": "^4.4.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "expo-cli": "^4.13.0",
     "expo-module-scripts": "^2.0.0",
