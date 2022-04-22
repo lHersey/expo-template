@@ -11,6 +11,7 @@ updates:
       - dependency-name: '@types/react-native'
       - dependency-name: '@types/react'
       - dependency-name: 'react-native-reanimated'
+      - dependency-name: 'react-native-safe-area-context'
       - dependency-name: 'react-native-screens'
-      - dependency-name: 'typescript'
       - dependency-name: 'react'
+      - dependency-name: 'typescript'
