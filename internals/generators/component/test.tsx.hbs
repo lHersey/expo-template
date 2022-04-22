@@ -1,0 +1,38 @@
+import { render } from '@testing-library/react-native';
+import React from 'react';
+import Providers from 'shared/providers';
+
+import {{ properCase name }} from '../index';
+
+describe('<{{ properCase name }} />', () => {
+  describe('snapshots', () => {
+    it('should match snapshot', () => {
+      expect.hasAssertions();
+      const rendered = render(
+        <Providers>
+          <{{ properCase name }} />
+        </Providers>,
+      ).toJSON();
+
+      expect(rendered).toMatchSnapshot();
+    });
+  });
+
+  describe('unit', () => {
+    it('should render the text', () => {
+      expect.hasAssertions();
+      const { queryByText } = render(
+        <Providers>
+          <{{ properCase name }} />
+        </Providers>,
+      );
+
+      expect(queryByText('Hello {{ properCase name }}')).toBeTruthy();
+    });
+  });
+
+  it('should have unit tests specified', () => {
+    expect.hasAssertions();
+    expect(true).toStrictEqual(false);
+  });
+});

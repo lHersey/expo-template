@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Text /> snapshots should match snapshot 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#102A43",
+      },
+    ]
+  }
+>
+  Hello Text
+</Text>
+`;
