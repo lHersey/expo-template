@@ -28,7 +28,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@react-native-community/eslint-config": "^3.0.3",
+    "@react-native-community/eslint-config": "^3.1.0",
     "@testing-library/react-native": "^11.0.0",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.67.6",
