@@ -1,8 +1,6 @@
-import { FC } from 'react';
-
 import { Container, Title } from './styles';
 
-const Home: FC = () => {
+const Home = () => {
   return (
     <Container>
       <Title>Hello Home</Title>
