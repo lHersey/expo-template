@@ -1,0 +1,20 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true, //Enables all strict type checking options.
+    "noImplicitAny": true, // Raise error on expressions and declarations with an implied 'any' type.
+    "noImplicitThis": true, //Raise error on 'this' expressions with an implied 'any' type.
+    "alwaysStrict": true, //Parse in strict mode and emit "use strict" for each source file.
+    "strictNullChecks": true, //When type checking, take into account 'null' and 'undefined'.
+    "strictFunctionTypes": true, //Check that the arguments for function calls are type-compatible with the parameters of the function.
+    "strictBindCallApply": true, //Check that the arguments for methods 'bind', 'call', and 'apply' are type-compatible with the original function.
+    "strictPropertyInitialization": true, //Check for class properties that are declared but not initialized in the constructor.
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@screens/*": ["src/screens/*"],
+      "@shared/*": ["src/shared/*"],
+      "@styles/*": ["src/styles/*"]
+    }
+  }
+}
