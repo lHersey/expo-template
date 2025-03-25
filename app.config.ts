@@ -2,8 +2,8 @@ import { ConfigContext, ExpoConfig } from '@expo/config';
 
 const APP_NAME = 'My App'; // Your app name
 const APP_SLUG = 'my-new-app'; // Needs to be the same across all variants
-const BUNDLE_IDENTIFIER = 'com.template.my-app'; // Your bundle identifier (iOS)
-const PACKAGE_NAME = 'com.template.my-app'; // Your package name (Android)
+const BUNDLE_IDENTIFIER = 'com.template.myapp'; // Your bundle identifier (iOS)
+const PACKAGE_NAME = 'com.template.myapp'; // Your package name (Android)
 const SCHEME = 'my-app'; // Your app scheme used for Linking (e.g. my-app://)
 const EXPO_PROJECT_ID = 'YOUR_EXPO_PROJECT_ID'; //'YOUR_EXPO_PROJECT_ID';
 const EXPO_UPDATES_URL = 'YOUR_EXPO_UPDATES_URL'; //'YOUR_EXP_UPDATES_URL';
@@ -40,7 +40,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       package: envConfig.packageName,
       adaptiveIcon: {
         foregroundImage: envConfig.icon.adaptiveIcon,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#fff',
       },
     },
     web: {
@@ -55,12 +55,12 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       [
         'expo-splash-screen',
         {
-          backgroundColor: '#232323',
+          backgroundColor: '#fff',
           imageWidth: 200,
           image: envConfig.splashIcon.dark,
           resizeMode: 'contain',
           dark: {
-            image: envConfig.splashIcon.dark,
+            image: envConfig.splashIcon.light,
             backgroundColor: '#000000',
           },
         },
@@ -89,7 +89,7 @@ interface DynamicEnvironmentConfig {
 export const getDynamicAppConfig = (env: 'development' | 'preview' | 'production'): DynamicEnvironmentConfig => {
   if (env === 'development') {
     return {
-      name: `${APP_NAME} Dev`,
+      name: `${APP_NAME} | Dev`,
       bundleIdentifier: `${BUNDLE_IDENTIFIER}.dev`,
       packageName: `${PACKAGE_NAME}.dev`,
       icon: {
@@ -108,7 +108,7 @@ export const getDynamicAppConfig = (env: 'development' | 'preview' | 'production
 
   if (env === 'preview') {
     return {
-      name: `${APP_NAME} Preview`,
+      name: `${APP_NAME} | Preview`,
       bundleIdentifier: `${BUNDLE_IDENTIFIER}.preview`,
       packageName: `${PACKAGE_NAME}.preview`,
       icon: {

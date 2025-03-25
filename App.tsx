@@ -1,26 +1,27 @@
 import 'expo-dev-client';
 
-import SplashScreen from 'expo-splash-screen';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 
 SplashScreen.preventAutoHideAsync();
 
+import HomeScreen from '@/screens/home-screen';
 import { ThemeProvider } from '@/styles/theme/ThemeProvider';
 
 export default function App() {
-  const [isAppReady, setIsAppReady] = useState(false);
+  const [isThemeReady, setIsThemeReady] = useState(false);
 
   useEffect(() => {
-    if (isAppReady) {
+    if (isThemeReady) {
       SplashScreen.hideAsync();
     }
-  }, [isAppReady]);
+  }, [isThemeReady]);
 
   return (
-    <ThemeProvider onThemeLoaded={() => setIsAppReady(true)}>
+    <ThemeProvider onThemeLoaded={() => setIsThemeReady(true)}>
       <StatusBar />
-      <App />
+      <HomeScreen />
     </ThemeProvider>
   );
 }

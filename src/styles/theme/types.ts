@@ -4,9 +4,17 @@ export type NamedStyles<T> = {
   [P in keyof T]: ViewStyle | TextStyle | ImageStyle;
 };
 
+// Actual themes that can be applied
 export enum Theme {
   LIGHT = 'LIGHT',
   DARK = 'DARK',
+}
+
+// User preference options including system default
+export enum ThemePreference {
+  LIGHT = 'LIGHT',
+  DARK = 'DARK',
+  SYSTEM = 'SYSTEM',
 }
 
 export interface ThemeState {
@@ -31,6 +39,7 @@ export interface ColorTheme {
   info: string;
   success: string;
   action: ActionColors;
+  shadow: string;
 }
 
 export interface ColorShades {

@@ -24,6 +24,7 @@ const getStyles = (theme: Readonly<ThemeState>) => {
       justifyContent: 'center',
     },
     text: {
+      color: theme.colors.text.primary,
       fontSize: theme.typography.fontSize.medium,
       fontWeight: theme.typography.fontWeight.bold,
     },

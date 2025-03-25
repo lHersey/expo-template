@@ -47,29 +47,29 @@ const borderRadius: BorderRadius = {
   round: 9999, // For circular elements
 };
 
-const shadows: Shadows = {
+const getShadows = (theme: Theme): Shadows => ({
   shadowSm: {
-    shadowColor: '#000',
+    shadowColor: colors[theme].shadow,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.18,
     shadowRadius: 1.0,
     elevation: 2,
   },
   shadowMd: {
-    shadowColor: '#000',
+    shadowColor: colors[theme].shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
   },
   shadowLg: {
-    shadowColor: '#000',
+    shadowColor: colors[theme].shadow,
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
     elevation: 7,
   },
-};
+});
 
 export const LIGHT_THEME: ThemeState = {
   theme: Theme.LIGHT,
@@ -77,7 +77,7 @@ export const LIGHT_THEME: ThemeState = {
   typography,
   spacing,
   borderRadius,
-  shadows,
+  shadows: getShadows(Theme.LIGHT),
 };
 
 export const DARK_THEME: ThemeState = {
@@ -86,5 +86,5 @@ export const DARK_THEME: ThemeState = {
   typography,
   spacing,
   borderRadius,
-  shadows,
+  shadows: getShadows(Theme.DARK),
 };

@@ -1,9 +1,9 @@
 import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { useColorScheme } from 'react-native';
+import { Appearance, ColorSchemeName, useColorScheme } from 'react-native';
 
 import { DARK_THEME, LIGHT_THEME } from './themes';
-import { Theme, ThemeState } from './types';
+import { Theme, ThemePreference, ThemeState } from './types';
 
 // Constants
 const THEME_STORAGE_KEY: string = '@app_theme';
@@ -11,13 +11,14 @@ const THEME_STORAGE_KEY: string = '@app_theme';
 // Types and Interfaces
 interface ThemeContextProps {
   themeState: ThemeState;
-  setTheme: (theme: Theme) => void;
+  setTheme: (preference: ThemePreference) => void;
   isLoading: boolean;
+  themePreference: ThemePreference;
 }
 
 type ThemeProviderProps = {
   children: ReactNode;
-  defaultTheme?: Theme;
+  defaultThemePreference?: ThemePreference;
   onThemeLoaded: () => void;
 };
 
@@ -28,25 +29,36 @@ const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 function useThemeStorage() {
   const storage = useAsyncStorage(THEME_STORAGE_KEY);
 
-  const saveTheme = async (theme: Theme): Promise<void> => {
+  // Save theme preference to storage
+  const saveThemePreference = async (preference: ThemePreference): Promise<void> => {
     try {
-      await storage.setItem(theme);
+      await storage.setItem(preference);
     } catch {
       return;
     }
   };
 
-  const loadTheme = async (): Promise<Theme | null> => {
+  // Load saved theme preference from storage
+  const loadThemePreference = async (): Promise<ThemePreference | null> => {
     try {
-      const savedTheme = await storage.getItem();
-      return savedTheme as Theme | null;
+      const savedPreference = await storage.getItem();
+      return savedPreference as ThemePreference | null;
     } catch {
       return null;
     }
   };
 
-  return { saveTheme, loadTheme };
+  return { saveThemePreference, loadThemePreference };
 }
+
+// Resolve actual theme based on user preference and system
+const resolveTheme = (preference: ThemePreference, systemTheme: ColorSchemeName): Theme => {
+  if (preference === ThemePreference.SYSTEM) {
+    return systemTheme === 'dark' ? Theme.DARK : Theme.LIGHT;
+  }
+  // Convert preference to actual theme (safe since LIGHT and DARK enum values are the same)
+  return preference === ThemePreference.DARK ? Theme.DARK : Theme.LIGHT;
+};
 
 // Theme mapping object
 const themeMap: Record<Theme, ThemeState> = {
@@ -54,28 +66,47 @@ const themeMap: Record<Theme, ThemeState> = {
   [Theme.DARK]: DARK_THEME,
 };
 
-export const ThemeProvider = ({ children, onThemeLoaded, defaultTheme }: ThemeProviderProps) => {
-  const preferredColorScheme = useColorScheme();
-  defaultTheme = defaultTheme || preferredColorScheme === 'dark' ? Theme.DARK : Theme.LIGHT;
+export const ThemeProvider = ({
+  children,
+  onThemeLoaded,
+  defaultThemePreference = ThemePreference.SYSTEM,
+}: ThemeProviderProps) => {
+  // Get the current color scheme of the phone
+  const currentColorScheme = useColorScheme();
 
-  const { saveTheme, loadTheme } = useThemeStorage();
+  // Custom hook for theme storage operations
+  const { saveThemePreference, loadThemePreference } = useThemeStorage();
 
+  // Track loading state (When reading from local storage)
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTheme, setActiveTheme] = useState<Theme>(defaultTheme);
 
-  // Handler for changing theme
-  const setTheme = async (theme: Theme) => {
-    setActiveTheme(theme);
-    await saveTheme(theme);
+  // Ttack the current color scheme of the phone if it changes while the app is open
+  const [colorScheme, setColorScheme] = useState<ColorSchemeName>(currentColorScheme);
+
+  // Track the user's theme preference (LIGHT, DARK, or SYSTEM)
+  const [userThemePreference, setUserThemePreference] = useState<ThemePreference>(defaultThemePreference);
+
+  // Track the actual theme being applied (only LIGHT or DARK)
+  const [activeTheme, setActiveTheme] = useState<Theme>(resolveTheme(defaultThemePreference, colorScheme));
+
+  // Handler for changing theme preference
+  const setTheme = async (preference: ThemePreference) => {
+    setUserThemePreference(preference);
+    await saveThemePreference(preference);
   };
+
+  // Update active theme whenever theme preference or system theme changes
+  useEffect(() => {
+    setActiveTheme(resolveTheme(userThemePreference, colorScheme));
+  }, [userThemePreference, colorScheme]);
 
   // Load saved theme on initial render
   useEffect(() => {
     const initializeTheme = async () => {
       try {
-        const savedTheme = await loadTheme();
-        if (savedTheme) {
-          setActiveTheme(savedTheme);
+        const savedPreference = await loadThemePreference();
+        if (savedPreference) {
+          setUserThemePreference(savedPreference);
         }
       } finally {
         setIsLoading(false);
@@ -84,10 +115,20 @@ export const ThemeProvider = ({ children, onThemeLoaded, defaultTheme }: ThemePr
     };
 
     initializeTheme();
-  }, [loadTheme, onThemeLoaded]);
+  }, [loadThemePreference, onThemeLoaded]);
 
-  // Get current theme state from theme type
-  const currentThemeState = themeMap[activeTheme] || LIGHT_THEME;
+  // If the user prefrence is system, and the user changes while the app is open,
+  // we need to update the theme accordingly
+  useEffect(() => {
+    const subscription = Appearance.addChangeListener(({ colorScheme: newColorScheme }) => {
+      setColorScheme(newColorScheme);
+    });
+
+    return () => subscription.remove();
+  }, []);
+
+  // Get current theme state from resolved theme
+  const currentThemeState = themeMap[activeTheme];
 
   return (
     <ThemeContext.Provider
@@ -95,6 +136,7 @@ export const ThemeProvider = ({ children, onThemeLoaded, defaultTheme }: ThemePr
         themeState: currentThemeState,
         setTheme,
         isLoading,
+        themePreference: userThemePreference,
       }}
     >
       {children}

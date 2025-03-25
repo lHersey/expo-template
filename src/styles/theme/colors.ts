@@ -44,6 +44,7 @@ export const colors: Record<Theme, Readonly<ColorTheme>> = {
       selected: 'rgba(31, 41, 55, 0.08)', // Selected state background
       disabled: 'rgba(31, 41, 55, 0.26)', // Disabled state opacity
     },
+    shadow: 'rgba(0, 0, 0, 0.1)', // Shadow for elevated elements
   },
   [Theme.DARK]: {
     primary: {
@@ -87,6 +88,7 @@ export const colors: Record<Theme, Readonly<ColorTheme>> = {
       selected: 'rgba(249, 250, 251, 0.16)', // Selected state background
       disabled: 'rgba(249, 250, 251, 0.3)', // Disabled state opacity
     },
+    shadow: 'rgba(0, 0, 0, 0.5)', // Shadow for elevated elements
   },
 };
 
