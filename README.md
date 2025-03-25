@@ -28,7 +28,7 @@ git clone https://github.com/lhersey/expo-template.git
 # Navigate to the project folder
 cd expo-template
 
-# Install dependencies
+# Install dependencies (Use yarn or any the package manager of your preference)
 npm install
 ```
 
@@ -81,7 +81,7 @@ expo-template/
 ├── babel.config.js        # Babel configuration
 ├── eslint.config.mjs      # ESLint configuration
 ├── jest.config.js         # Jest configuration
-├── jest.setup.js          # Jest setup file
+├── metro.config.js         # Metro bundler configuration
 ├── lint-staged.config.mjs # Lint-staged configuration
 └── tsconfig.json          # TypeScript configuration
 ```
@@ -110,7 +110,7 @@ Testing infrastructure is set up with Jest and React Native Testing Library:
 Run tests with:
 
 ```bash
-npm run test
+npm test
 ```
 
 ## Code Quality Tools
@@ -152,6 +152,14 @@ App configuration is defined in app.config.ts with dynamic environment-based set
 - App name and bundle identifiers
 - App icons and splash screens
 - Native configuration for iOS and Android
+
+## 📚 Documentation
+
+Explore the following documentation to learn more about the project and its features:
+
+- [Introduction to EAS Update](docs/updates/introduction.md)
+- [Theming](docs/themes/introduction.md)
+- [App icon generation and app variants](docs/app-icons/introduction.md)
 
 #### Documentation Links
 

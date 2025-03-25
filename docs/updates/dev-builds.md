@@ -1,4 +1,4 @@
-# 🛠️ Dev Builds and Branch Assignments
+# Dev Builds in EAS Update
 
 ## 🔍 Understanding Dev Builds
 

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { ThemeState } from '@/styles/theme/types';
-import { useStylesWithTheme } from '@/styles/theme/useStylesFor';
+import { useStylesWithTheme } from '@/styles/theme/useStylesWithTheme';
 
 export const HOME_SCREEN_CONTAINER_TEST_ID = 'home-screen-container';
 
