@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react-native';
 import React from 'react';
 
 import { ThemeProvider } from '@/styles/theme/ThemeProvider';
-import { Theme } from '@/styles/theme/types';
+import { ThemePreference } from '@/styles/theme/types';
 
 import HomeScreen from './home-screen';
 
@@ -18,9 +18,9 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 
 describe('HomeScreen', () => {
   // Helper function to render component with ThemeProvider
-  const renderWithTheme = (onThemeLoaded = jest.fn()) => {
+  const renderWithTheme = () => {
     return render(
-      <ThemeProvider defaultTheme={Theme.LIGHT} onThemeLoaded={onThemeLoaded}>
+      <ThemeProvider defaultThemePreference={ThemePreference.LIGHT} onThemeLoaded={jest.fn()}>
         <HomeScreen />
       </ThemeProvider>,
     );
