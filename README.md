@@ -56,7 +56,8 @@ npm run doctor          # Run Expo Doctor for project health check
 
 # Building
 npm run build:dev:android       # Build Android DEV client app
-npm run build:dev:ios           # Build iOS DEV client app
+npm run build:dev:ios           # Build iOS DEV client app (Real device)
+npm run build:dev:simulator     # Build iOS DEV client app (Simulator)
 npm run build:preview:android   # Build Android preview
 npm run build:preview:ios       # Build iOS preview
 npm run build:prod:android      # Build Android production

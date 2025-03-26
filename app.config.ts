@@ -19,7 +19,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     version: APP_VERSION,
     orientation: 'portrait',
     scheme: envConfig.scheme,
-    userInterfaceStyle: 'light',
+    userInterfaceStyle: 'automatic',
     newArchEnabled: true,
     updates: {
       url: EXPO_UPDATES_URL,

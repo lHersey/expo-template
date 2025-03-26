@@ -13,6 +13,17 @@
         "APP_VARIANT": "development" //Used to select the correct app variant in ./app.config.json on build
       }
     },
+    "simulator": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development",
+      "ios": {
+        "simulator": true
+      },
+      "env": {
+        "APP_VARIANT": "development" //Used to select the correct app variant in ./app.config.json on build
+      }
+    },
     "preview": {
       "distribution": "internal",
       "channel": "preview",
